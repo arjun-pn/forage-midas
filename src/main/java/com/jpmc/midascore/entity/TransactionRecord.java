@@ -11,21 +11,25 @@ public class TransactionRecord {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "sender_id", nullable = false)
+    @JoinColumn(name = "sender_id")
     private UserRecord sender;
 
     @ManyToOne
-    @JoinColumn(name = "recipient_id", nullable = false)
+    @JoinColumn(name = "recipient_id")
     private UserRecord recipient;
 
     private float amount;
+    private float incentive;
 
-    public TransactionRecord() {}
+    // Default constructor required by JPA
+    public TransactionRecord() {
+    }
 
-    public TransactionRecord(UserRecord sender, UserRecord recipient, float amount) {
+    public TransactionRecord(UserRecord sender, UserRecord recipient, float amount, float incentive) {
         this.sender = sender;
         this.recipient = recipient;
         this.amount = amount;
+        this.incentive = incentive;
     }
 
     public Long getId() {
@@ -44,6 +48,10 @@ public class TransactionRecord {
         return amount;
     }
 
+    public float getIncentive() {
+        return incentive;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -58,5 +66,9 @@ public class TransactionRecord {
 
     public void setAmount(float amount) {
         this.amount = amount;
+    }
+
+    public void setIncentive(float incentive) {
+        this.incentive = incentive;
     }
 }
